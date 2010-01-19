@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="org.yongqiang.chatlan.category.chatlan"
+            name="ChatLAN">
+      </category>
+      <view
+            allowMultiple="false"
+            category="org.yongqiang.chatlan.category.chatlan"
+            class="org.yongqiang.chatlan.views.MainView"
+            icon="icons/chatlan.gif"
+            id="org.yongqiang.chatlan.views.mainView"
+            name="ChatLAN"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="true"
+            class="org.yongqiang.chatlan.views.ChatView"
+            icon="icons/chatlan.gif"
+            id="org.yongqiang.chatlan.views.chatview"
+            name="Chat with..."
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.yongqiang.chatlan.views.mainView?after=additions">
+         <command
+               commandId="org.yongqiang.chatlan.commands.refreshBuddyList"
+               icon="icons/refresh.gif"
+               style="push"
+               tooltip="Refresh Buddy List">
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="menu:org.yongqiang.chatlan.views.mainView?after=additions">
+         <command
+               commandId="org.yongqiang.chatlan.commands.refreshBuddyList"
+               icon="icons/refresh.gif"
+               style="push"
+               tooltip="Refresh Buddy List">
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="org.yongqiang.chatlan.toolbars.main">
+            <command
+                  commandId="org.yongqiang.chatlan.commands.openMainView"
+                  icon="icons/chatlan.gif"
+                  id="org.yongqiang.chatlan.toolbars.openMainView"
+                  style="push"
+                  tooltip="Open ChatLAN view">
+            </command>
+         </toolbar>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.yongqiang.chatlan.views.mainView?after=additions">
+         <command
+               commandId="org.yongqiang.chatlan.commands.refreshBuddyList"
+               icon="icons/refresh.gif"
+               style="push"
+               tooltip="Refresh Buddy List">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            description="Refresh Buddy List"
+            id="org.yongqiang.chatlan.commands.refreshBuddyList"
+            name="Refresh Buddy List">
+      </command>
+      <category
+            description="Commands related to ChatLAN"
+            id="org.yongqiang.chatlan.commands.category"
+            name="ChatLAN">
+      </category>
+      <command
+            categoryId="org.yongqiang.chatlan.commands.category"
+            description="Open the main view of ChatLAN"
+            id="org.yongqiang.chatlan.commands.openMainView"
+            name="Open ChatLAN">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.yongqiang.chatlan.handlers.OpenViewHandler"
+            commandId="org.yongqiang.chatlan.commands.openMainView">
+      </handler>
+      <handler
+            class="org.yongqiang.chatlan.handlers.RefreshBuddyListHandler"
+            commandId="org.yongqiang.chatlan.commands.refreshBuddyList">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.yongqiang.chatlan.preferences.ChatLanPreferencePage"
+            id="org.yongqiang.chatlan.preferences.ChatLanPreferencePage"
+            name="ChatLAN">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.yongqiang.chatlan.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+
+</plugin>
